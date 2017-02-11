@@ -21,7 +21,7 @@ apartment:
     -user_id; #
   -belongs to user
 
-for sale:
+sale:
   attributes:
    -price; #
     -content; text
