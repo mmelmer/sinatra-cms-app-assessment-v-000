@@ -10,6 +10,8 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'rack-flash3'
+gem 'bcrypt'
+
 
 group :test do
   gem 'rspec'
