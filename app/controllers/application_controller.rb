@@ -9,6 +9,16 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "assessment_secret"
   end
 
+  helpers do 
+    def logged_in_user
+      User.find_by(:id => session[:user_id])
+    end 
+
+    def logged_in
+      !!session[:user_id]
+    end
+  end
+
   get '/' do
     erb :index
   end
@@ -21,7 +31,7 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(:username => params[:username])
     if @user !=nil && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/tweets'
+      redirect '/'
     else
       redirect '/signup'
     end
@@ -37,8 +47,7 @@ class ApplicationController < Sinatra::Base
     else
       @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
-      session[:user_id] = @user.id
-      redirect '/'
+      redirect '/login'
     end
   end
 
