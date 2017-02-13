@@ -51,5 +51,16 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/apartments' do
+    erb :'/apartments/index'
+  end
+
+  get '/for_sale' do
+    erb :'/sales/index'
+  end
+
+  get '/wanted' do
+    erb :'/wanteds/index'
+  end
 
 end
