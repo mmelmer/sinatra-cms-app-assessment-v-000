@@ -59,8 +59,32 @@ class ApplicationController < Sinatra::Base
     erb :'/apartments/index'
   end
 
+  post '/apartments' do
+    @user = logged_in_user
+    @apartment = Apartment.create(params["apartment"]) 
+    @apartment.user_id = @user.id
+    @apartment.save
+    redirect '/apartments'
+  end
+
+  get '/apartments/new' do
+    erb :'apartments/create'
+  end
+
   get '/for_sale' do
     erb :'/sales/index'
+  end
+
+  get '/for_sale/new' do
+    erb :'sales/create'
+  end
+
+  post '/for_sale' do
+    @user = logged_in_user
+    @sale = Sale.create(params["sale"]) 
+    @sale.user_id = @user.id
+    @sale.save
+    redirect '/for_sale'
   end
 
   get '/wanted' do
