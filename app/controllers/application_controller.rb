@@ -71,6 +71,15 @@ class ApplicationController < Sinatra::Base
     erb :'apartments/create'
   end
 
+  get '/apartments/:id' do
+    if logged_in
+      @apartment = Apartment.find_by(:id => params[:id])
+      erb :'/apartments/show'
+    else
+      redirect '/login'
+    end
+  end
+
   get '/for_sale' do
     erb :'/sales/index'
   end
