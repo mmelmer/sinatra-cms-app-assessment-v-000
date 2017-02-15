@@ -91,4 +91,16 @@ class ApplicationController < Sinatra::Base
     erb :'/wanteds/index'
   end
 
+  get '/wanted/new' do
+    erb :'/wanteds/create'
+  end
+
+  post '/wanted' do
+    @user = logged_in_user
+    @wanted = Wanted.create(params["wanted"]) 
+    @wanted.user_id = @user.id
+    @wanted.save
+    redirect '/wanted'
+  end
+
 end
