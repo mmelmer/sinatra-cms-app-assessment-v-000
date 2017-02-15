@@ -15,12 +15,14 @@ ActiveRecord::Schema.define(version: 20170211171739) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer "price"
+    t.string  "headline"
     t.string  "content"
     t.integer "user_id"
   end
 
   create_table "sales", force: :cascade do |t|
     t.integer "price"
+    t.text    "headline"
     t.text    "content"
     t.integer "user_id"
   end
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170211171739) do
   end
 
   create_table "wanteds", force: :cascade do |t|
+    t.string  "headline"
     t.string  "content"
     t.integer "user_id"
   end

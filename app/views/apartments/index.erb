@@ -1,6 +1,5 @@
 <h5>Available Apartments:</h5>
 <% Apartment.all.each do |apartment|%>
-  <p><%= apartment.price %></p>
-  <li><%= apartment.content %></li>
+  <li><%= apartment.price %> - <%= apartment.headline %><li>
   <br><br>  
 <% end %>
