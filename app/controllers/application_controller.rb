@@ -68,7 +68,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/apartments/new' do
-    erb :'apartments/create'
+    if logged_in
+      erb :'apartments/create'
+    else
+      redirect '/login'
+    end
   end
 
   get '/apartments/:id' do
@@ -85,7 +89,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/for_sale/new' do
-    erb :'sales/create'
+    if logged_in
+      erb :'sales/create'
+    else
+      redirect '/login'
+    end
+    
   end
 
   post '/for_sale' do
@@ -101,7 +110,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/wanted/new' do
-    erb :'/wanteds/create'
+    if logged_in
+      erb :'/wanteds/create'
+    else
+      redirect '/login'
   end
 
   post '/wanted' do
