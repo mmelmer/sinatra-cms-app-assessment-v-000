@@ -1,5 +1,5 @@
 <p>Wanted Items:</p>
 <% Wanted.all.each do |wanted|%>
-  <li><%= wanted.headline %></li>
+  <li><a href='/wanted/<%=wanted.id%>'><%= wanted.headline %></li>
   <br>
 <% end %>
