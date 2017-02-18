@@ -114,6 +114,7 @@ class ApplicationController < Sinatra::Base
       erb :'/wanteds/create'
     else
       redirect '/login'
+    end
   end
 
   post '/wanted' do
