@@ -89,6 +89,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/apartments/:id/edit' do
+    @apartment = Apartment.find_by(:id => params[:id])
+    erb :'/apartments/edit'
+  end
+
   get '/for_sale' do
     erb :'/sales/index'
   end

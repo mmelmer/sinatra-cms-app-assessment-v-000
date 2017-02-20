@@ -1,0 +1,22 @@
+<h1>edit your listing here.</h1>
+
+<form action="/apartments/<%= @apartment.id %>" method="POST"> 
+  <input type="hidden" name="_method" value="PATCH">
+
+  <label for="price">Price: $</label><br>
+  <input type="text" name="content" id="content" value="<%= @apartment.price %>">
+
+  <br><br>
+
+  <label for="headline">Title of Post:</label><br>
+  <input type="text" name="headline" id="headline" value="<%= @apartment.headline %>">
+
+  <br><br>
+
+  <label for="content">Body of Ad:</label><br>
+  <input type="text" name="content" id="content" value="<%= @apartment.content %>">
+
+  <br>
+
+  <input type="submit" value="update">
+</form>
