@@ -9,7 +9,8 @@
   <h1><a href='/'>FAKE CRAIGSLIST</a></h1>
 
   <%if logged_in%>
-    <h5>hello, <%=logged_in_user%>.</h5>
+    <h4>hello, <%=logged_in_user.username%>!</h4>
+    <h6><a href='/logout'>log out.</a></h6>
   <%else%>
     <h5><a href='/login'>log in.</a></h5>
   <%end%>
