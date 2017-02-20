@@ -81,18 +81,22 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/apartments/:id' do
-    if logged_in
       @apartment = Apartment.find_by(:id => params[:id])
       erb :'/apartments/show'
-    else
-      redirect '/login'
-    end
   end
 
   get '/apartments/:id/edit' do
     @apartment = Apartment.find_by(:id => params[:id])
     erb :'/apartments/edit'
   end
+
+  patch '/apartments/:id' do
+    @apartment = Apartment.find_by(:id => params[:id])
+    @apartment.update(:content => params[:content], :headline => params[:headline], :price => params[:price])
+    @apartment.save
+    redirect '/apartments/:id'
+  end
+
 
   get '/for_sale' do
     erb :'/sales/index'
