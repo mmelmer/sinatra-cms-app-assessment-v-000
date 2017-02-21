@@ -142,6 +142,7 @@ class ApplicationController < Sinatra::Base
 
   get '/wanted/:id' do
     @wanted = Wanted.find_by(:id => params[:id])
+    erb :'/wanteds/show'
   end
 
 
