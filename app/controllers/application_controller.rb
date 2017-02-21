@@ -116,12 +116,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/for_sale/:id' do
-    if logged_in
-      @sale = Sale.find_by(:id => params[:id])
-      erb :'/sales/show'
-    else
-      redirect '/login'
-    end
+    @sale = Sale.find_by(:id => params[:id])
+    erb :'/sales/show'
   end
 
   get '/wanted' do
@@ -145,12 +141,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/wanted/:id' do
-    if logged_in
-      @wanted = Wanted.find_by(:id => params[:id])
-      erb :'/wanteds/show'
-    else
-      redirect '/login'
-    end
+    @wanted = Wanted.find_by(:id => params[:id])
   end
 
 
