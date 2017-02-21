@@ -56,10 +56,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/listings' do
-    erb :current_listings
-  end
-
   get '/apartments' do
     erb :'/apartments/index'
   end
