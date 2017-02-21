@@ -94,7 +94,7 @@ class ApplicationController < Sinatra::Base
     @apartment = Apartment.find_by(:id => params[:id])
     @apartment.update(:content => params[:content], :headline => params[:headline], :price => params[:price])
     @apartment.save
-    redirect '/apartments/:id'
+    redirect "/apartments/#{@apartment.id}"
   end
 
 
