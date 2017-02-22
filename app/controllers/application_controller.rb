@@ -60,9 +60,11 @@ class ApplicationController < Sinatra::Base
     if logged_in
       @user = logged_in_user
       @apartments = []
-      @apartments = Apartment.all.each {|apt| @apartments << apt if apt.user_id == @user.id}
-      # @sales = Sale.find_by(:user_id => params[:id])
-      # @wanteds = Wanted.find_by(:user_id => params[:id])
+      Apartment.all.each {|apt| @apartments << apt if apt.user_id == @user.id}
+      @sales = []
+      Sale.all.each {|sale| @sales << sale if sale.user_id == @user.id}
+      @wanteds = []
+      Wanted.all.each {|wanted| @wanteds << wanted if wanted.user_id == @user.id}
       erb :'users/index'
     else
       redirect '/login'
