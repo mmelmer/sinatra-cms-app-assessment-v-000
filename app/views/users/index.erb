@@ -1,1 +1,6 @@
 <h1>here are your ads.</h1>
+<%if !@apartments.empty?%>
+  <%@apartments.each do |apartment|%>
+    <%= apartment.price %>
+  <%end%>
+<%end%>
