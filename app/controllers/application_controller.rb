@@ -56,6 +56,18 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/my_ads' do
+    if logged_in
+      params[:id] = logged_in_user
+      @apartments = Apartment.find_by(:user_id => params[:id])
+      @sales = Sale.find_by(:user_id => params[:id])
+      @wanteds = Wanted.find_by(:user_id => params[:id])
+      erb :'users/index'
+    else
+      redirect '/login'
+    end
+  end
+
   get '/apartments' do
     erb :'/apartments/index'
   end
@@ -144,6 +156,5 @@ class ApplicationController < Sinatra::Base
     @wanted = Wanted.find_by(:id => params[:id])
     erb :'/wanteds/show'
   end
-
 
 end
