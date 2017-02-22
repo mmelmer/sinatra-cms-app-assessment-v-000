@@ -2,7 +2,7 @@
 <%if !@apartments.empty?%>
   <p>Apartments:<p>
   <%@apartments.each do |apartment|%>
-    <li><%= apartment.headline %> - <%= apartment.price %></li>
+    <li><a href='/apartments/<%=apartment.id%>'><%= apartment.headline %> - <%= apartment.price %></a></li>
   <%end%>
 <%end%>
 
@@ -11,7 +11,7 @@
 <%if !@sales.empty?%>
   <p>For Sale:<p>
   <%@sales.each do |sale|%>
-    <li><%= sale.headline %> - <%= sale.price %></li>
+    <li><a href='/for_sale/<%=sale.id%>'><%= sale.headline %> - <%= sale.price %></a></li>
   <%end%>
 <%end%>
 
@@ -20,6 +20,6 @@
 <%if !@wanteds.empty?%>
   <p>Wanted:<p>
   <%@wanteds.each do |wanted|%>
-    <li><%= wanted.headline %> - <%= wanted.price %></li>
+    <li><a href='/wanteds/<%=wanted.id%>'><%= wanted.headline %> - <%= wanted.price %></a></li>
   <%end%>
 <%end%>
