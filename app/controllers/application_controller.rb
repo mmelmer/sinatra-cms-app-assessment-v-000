@@ -1,6 +1,9 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -33,7 +36,8 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/'
     else
-      redirect '/signup'
+      flash[:message] = "incorrect username or password."
+      redirect '/login'
     end
   end
 

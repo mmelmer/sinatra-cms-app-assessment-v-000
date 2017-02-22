@@ -1,6 +1,25 @@
-<h1>here are your ads.</h1>
+<h4>your ads:</h4>
 <%if !@apartments.empty?%>
+  <p>Apartments:<p>
   <%@apartments.each do |apartment|%>
-    <%= apartment.price %>
+    <li><%= apartment.headline %> - <%= apartment.price %></li>
+  <%end%>
+<%end%>
+
+<br>
+
+<%if !@sales.empty?%>
+  <p>For Sale:<p>
+  <%@sales.each do |sale|%>
+    <li><%= sale.headline %> - <%= sale.price %></li>
+  <%end%>
+<%end%>
+
+<br>
+
+<%if !@wanteds.empty?%>
+  <p>Wanted:<p>
+  <%@wanteds.each do |wanted|%>
+    <li><%= wanted.headline %> - <%= wanted.price %></li>
   <%end%>
 <%end%>
