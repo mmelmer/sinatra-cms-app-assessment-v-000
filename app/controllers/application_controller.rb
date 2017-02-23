@@ -97,6 +97,7 @@ class ApplicationController < Sinatra::Base
 
   get '/apartments/:id' do
       @apartment = Apartment.find_by(:id => params[:id])
+      @user = User.find_by(:id => @apartment.user_id)
       erb :'/apartments/show'
   end
 
