@@ -137,6 +137,7 @@ class ApplicationController < Sinatra::Base
 
   get '/for_sale/:id' do
     @sale = Sale.find_by(:id => params[:id])
+    @user = User.find_by(:id => @sale.user_id)
     erb :'/sales/show'
   end
 
@@ -162,6 +163,7 @@ class ApplicationController < Sinatra::Base
 
   get '/wanted/:id' do
     @wanted = Wanted.find_by(:id => params[:id])
+    @user = User.find_by(:id => @wanted.user_id)
     erb :'/wanteds/show'
   end
 
