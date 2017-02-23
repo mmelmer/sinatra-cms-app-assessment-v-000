@@ -75,6 +75,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/create_ad' do
+    erb :create
+  end
+
   get '/apartments' do
     erb :'/apartments/index'
   end
