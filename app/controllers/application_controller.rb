@@ -153,6 +153,15 @@ class ApplicationController < Sinatra::Base
     erb :'/sales/show'
   end
 
+  get '/for_sale/:id/edit' do
+    @sale = Sale.find_by(:id => params[:id])
+    @user = User.find_by(:id => @sale.user_id)
+    if @user.id == logged_in_user.id
+      erb :'/sales/edit'
+    else
+      erb :'/sales/index'
+  end
+
   get '/wanted' do
     erb :'/wanteds/index'
   end
@@ -178,6 +187,15 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(:id => @wanted.user_id)
     @viewer = logged_in_user
     erb :'/wanteds/show'
+  end
+
+  get '/wanted/:id/edit' do
+    @wanted = Wanted.find_by(:id => params[:id])
+    @user = User.find_by(:id => @wanted.user_id)
+    if @user.id == logged_in_user.id
+      erb :'/wanted/edit'
+    else
+      erb :'/wanted/index'
   end
 
 end
