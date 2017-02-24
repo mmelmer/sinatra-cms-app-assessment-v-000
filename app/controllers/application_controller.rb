@@ -160,6 +160,7 @@ class ApplicationController < Sinatra::Base
       erb :'/sales/edit'
     else
       erb :'/sales/index'
+    end
   end
 
   get '/wanted' do
@@ -196,6 +197,7 @@ class ApplicationController < Sinatra::Base
       erb :'/wanted/edit'
     else
       erb :'/wanted/index'
+    end
   end
 
 end
