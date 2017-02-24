@@ -2,6 +2,6 @@
 <li>$<%= @apartment.price %>/mo.</li>
 <li><%= @apartment.content %></li>
 <li>contact: <%= @user.email %></li>
-<% if @user.id == @apartment.user_id %>
+<% if @viewer.id == @apartment.user_id %>
   <p><a href=/apartments/:id/edit>edit</a></p>
 <% end %>
