@@ -109,7 +109,12 @@ class ApplicationController < Sinatra::Base
 
   get '/apartments/:id/edit' do
     @apartment = Apartment.find_by(:id => params[:id])
-    erb :'/apartments/edit'
+    @user = User.find_by(:id => @apartment.user_id)
+    if @user.id == logged_in_user.id
+      erb :'/apartments/edit'
+    else
+      erb :'/apartments/index'
+    end
   end
 
   patch '/apartments/:id' do
@@ -144,6 +149,7 @@ class ApplicationController < Sinatra::Base
   get '/for_sale/:id' do
     @sale = Sale.find_by(:id => params[:id])
     @user = User.find_by(:id => @sale.user_id)
+    @viewer = logged_in_user
     erb :'/sales/show'
   end
 
@@ -170,6 +176,7 @@ class ApplicationController < Sinatra::Base
   get '/wanted/:id' do
     @wanted = Wanted.find_by(:id => params[:id])
     @user = User.find_by(:id => @wanted.user_id)
+    @viewer = logged_in_user
     erb :'/wanteds/show'
   end
 
