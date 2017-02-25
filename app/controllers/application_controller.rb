@@ -103,7 +103,11 @@ class ApplicationController < Sinatra::Base
   get '/apartments/:id' do
       @apartment = Apartment.find_by(:id => params[:id])
       @user = User.find_by(:id => @apartment.user_id)
-      @viewer = logged_in_user
+      if logged_in
+        @viewer = logged_in_user
+      else
+        @viewer = User.new
+      end
       erb :'/apartments/show'
   end
 
@@ -124,7 +128,6 @@ class ApplicationController < Sinatra::Base
     redirect "/apartments/#{@apartment.id}"
   end
 
-
   get '/for_sale' do
     erb :'/sales/index'
   end
@@ -135,7 +138,6 @@ class ApplicationController < Sinatra::Base
     else
       redirect '/login'
     end
-    
   end
 
   post '/for_sale' do
@@ -149,7 +151,11 @@ class ApplicationController < Sinatra::Base
   get '/for_sale/:id' do
     @sale = Sale.find_by(:id => params[:id])
     @user = User.find_by(:id => @sale.user_id)
-    @viewer = logged_in_user
+    if logged_in
+      @viewer = logged_in_user
+    else
+      @viewer = User.new
+    end
     erb :'/sales/show'
   end
 
@@ -186,7 +192,11 @@ class ApplicationController < Sinatra::Base
   get '/wanted/:id' do
     @wanted = Wanted.find_by(:id => params[:id])
     @user = User.find_by(:id => @wanted.user_id)
-    @viewer = logged_in_user
+    if logged_in
+      @viewer = logged_in_user
+    else
+      @viewer = User.new
+    end
     erb :'/wanteds/show'
   end
 
