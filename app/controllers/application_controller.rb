@@ -217,4 +217,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  patch '/wanted/:id' do
+    @wanted = Wanted.find_by(:id => params[:id])
+    @wanted.update(:content => params[:content], :headline => params[:headline])
+    @wanted.save
+    redirect "/wanted/#{@wanted.id}"
+  end
+
 end
