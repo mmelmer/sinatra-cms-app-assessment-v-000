@@ -2,5 +2,5 @@
 <li><%= @wanted.content %></li>
 <li>contact: <%= @user.email %></li>
 <% if @viewer.id == @wanted.user_id %>
-  <p><a href=/wanteds/<%=@wanted.id%>/edit>edit</a></p>
+  <p><a href=/wanted/<%=@wanted.id%>/edit>edit</a></p>
 <% end %>

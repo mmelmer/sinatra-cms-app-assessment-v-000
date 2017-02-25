@@ -3,5 +3,5 @@
 <li><%= @sale.content %></li>
 <li>contact: <%= @user.email %></li>
 <% if @viewer.id == @sale.user_id %>
-  <p><a href=/sales/<%=@sale.id%>/edit>edit</a></p>
+  <p><a href=/for_sale/<%=@sale.id%>/edit>edit</a></p>
 <% end %>

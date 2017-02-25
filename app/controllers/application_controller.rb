@@ -169,6 +169,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  patch '/for_sale/:id' do
+    @sale = Sale.find_by(:id => params[:id])
+    @sale.update(:content => params[:content], :headline => params[:headline], :price => params[:price])
+    @sale.save
+    redirect "/for_sale/#{@sale.id}"
+  end
+
   get '/wanted' do
     erb :'/wanteds/index'
   end
@@ -204,9 +211,9 @@ class ApplicationController < Sinatra::Base
     @wanted = Wanted.find_by(:id => params[:id])
     @user = User.find_by(:id => @wanted.user_id)
     if @user.id == logged_in_user.id
-      erb :'/wanted/edit'
+      erb :'/wanteds/edit'
     else
-      erb :'/wanted/index'
+      erb :'/wanteds/index'
     end
   end
 
