@@ -128,6 +128,16 @@ class ApplicationController < Sinatra::Base
     redirect "/apartments/#{@apartment.id}"
   end
 
+  get '/apartments/:id/delete' do
+    @apartment = Apartment.find_by(:id => params[:id])
+    if @apartment.user_id == logged_in_user.id
+      @apartment.delete
+      redirect "/apartments"
+    else
+      redirect "/apartments"
+    end
+  end  
+  
   get '/for_sale' do
     erb :'/sales/index'
   end
