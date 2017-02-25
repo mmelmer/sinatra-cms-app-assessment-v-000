@@ -186,6 +186,16 @@ class ApplicationController < Sinatra::Base
     redirect "/for_sale/#{@sale.id}"
   end
 
+  get '/for_sale/:id/delete' do
+    @sale = Sale.find_by(:id => params[:id])
+    if @sale.user_id == logged_in_user.id
+      @sale.delete
+      redirect "/for_sale"
+    else
+      redirect "/for_sale"
+    end
+  end 
+
   get '/wanted' do
     erb :'/wanteds/index'
   end
@@ -233,5 +243,15 @@ class ApplicationController < Sinatra::Base
     @wanted.save
     redirect "/wanted/#{@wanted.id}"
   end
+
+  get '/wanted/:id/delete' do
+    @wanted = Wanted.find_by(:id => params[:id])
+    if @wanted.user_id == logged_in_user.id
+      @wanted.delete
+      redirect "/wanted"
+    else
+      redirect "/wanted"
+    end
+  end 
 
 end
