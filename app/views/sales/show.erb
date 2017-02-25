@@ -4,4 +4,5 @@
 <li>contact: <%= @user.email %></li>
 <% if @viewer.id == @sale.user_id %>
   <p><a href=/for_sale/<%=@sale.id%>/edit>edit</a></p>
+  <p><a href=/for_sale/<%=@sale.id%>/delete>delete</a></p>
 <% end %>
