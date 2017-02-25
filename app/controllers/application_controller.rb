@@ -20,6 +20,10 @@ class ApplicationController < Sinatra::Base
     def logged_in
       !!session[:user_id]
     end
+
+    def author?
+      @user.id == logged_in_user.id
+    end
   end
 
   get '/' do
@@ -114,7 +118,7 @@ class ApplicationController < Sinatra::Base
   get '/apartments/:id/edit' do
     @apartment = Apartment.find_by(:id => params[:id])
     @user = User.find_by(:id => @apartment.user_id)
-    if @user.id == logged_in_user.id
+    if author?
       erb :'/apartments/edit'
     else
       erb :'/apartments/index'
@@ -130,7 +134,8 @@ class ApplicationController < Sinatra::Base
 
   get '/apartments/:id/delete' do
     @apartment = Apartment.find_by(:id => params[:id])
-    if @apartment.user_id == logged_in_user.id
+    @user = User.find_by(:id => @apartment.user_id)
+    if author?
       @apartment.delete
       redirect "/apartments"
     else
@@ -172,7 +177,7 @@ class ApplicationController < Sinatra::Base
   get '/for_sale/:id/edit' do
     @sale = Sale.find_by(:id => params[:id])
     @user = User.find_by(:id => @sale.user_id)
-    if @user.id == logged_in_user.id
+    if author?
       erb :'/sales/edit'
     else
       erb :'/sales/index'
@@ -188,7 +193,8 @@ class ApplicationController < Sinatra::Base
 
   get '/for_sale/:id/delete' do
     @sale = Sale.find_by(:id => params[:id])
-    if @sale.user_id == logged_in_user.id
+    @user = User.find_by(:id => @sale.user_id)
+    if author?
       @sale.delete
       redirect "/for_sale"
     else
@@ -230,7 +236,7 @@ class ApplicationController < Sinatra::Base
   get '/wanted/:id/edit' do
     @wanted = Wanted.find_by(:id => params[:id])
     @user = User.find_by(:id => @wanted.user_id)
-    if @user.id == logged_in_user.id
+    if author?
       erb :'/wanteds/edit'
     else
       erb :'/wanteds/index'
@@ -246,7 +252,8 @@ class ApplicationController < Sinatra::Base
 
   get '/wanted/:id/delete' do
     @wanted = Wanted.find_by(:id => params[:id])
-    if @wanted.user_id == logged_in_user.id
+    @user = User.find_by(:id => @wanted.user_id)
+    if author?
       @wanted.delete
       redirect "/wanted"
     else
