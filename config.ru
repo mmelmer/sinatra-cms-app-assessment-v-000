@@ -5,5 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-# use OtherController(s)
+use ApartmentsController
+use SalesController
+use WantedsController
 run ApplicationController
