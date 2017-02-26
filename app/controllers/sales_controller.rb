@@ -21,7 +21,7 @@ class SalesController < ApplicationController
   end
 
   get '/for_sale/:id' do
-    @sale = Sale.find_by(:id => params[:id])
+    sales_id
     @user = User.find_by(:id => @sale.user_id)
     if logged_in
       @viewer = logged_in_user
@@ -32,7 +32,7 @@ class SalesController < ApplicationController
   end
 
   get '/for_sale/:id/edit' do
-    @sale = Sale.find_by(:id => params[:id])
+    sales_id
     @user = User.find_by(:id => @sale.user_id)
     if author?
       erb :'/sales/edit'
@@ -42,14 +42,14 @@ class SalesController < ApplicationController
   end
 
   patch '/for_sale/:id' do
-    @sale = Sale.find_by(:id => params[:id])
+    sales_id
     @sale.update(:content => params[:content], :headline => params[:headline], :price => params[:price])
     @sale.save
     redirect "/for_sale/#{@sale.id}"
   end
 
   get '/for_sale/:id/delete' do
-    @sale = Sale.find_by(:id => params[:id])
+    sales_id
     @user = User.find_by(:id => @sale.user_id)
     if author?
       @sale.delete

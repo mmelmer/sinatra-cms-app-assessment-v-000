@@ -24,6 +24,19 @@ class ApplicationController < Sinatra::Base
     def author?
       @user.id == logged_in_user.id
     end
+
+    def wanted_id
+      @wanted = Wanted.find_by(:id => params[:id])
+    end
+
+    def sales_id
+      @sale = Sale.find_by(:id => params[:id])
+    end
+
+    def apartment_id
+      @apartment = Apartment.find_by(:id => params[:id])
+    end
+
   end
 
   get '/' do

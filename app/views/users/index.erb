@@ -20,6 +20,6 @@
 <%if !@wanteds.empty?%>
   <p>Wanted:<p>
   <%@wanteds.each do |wanted|%>
-    <li><a href='/wanteds/<%=wanted.id%>'><%= wanted.headline %></a></li>
+    <li><a href='/wanted/<%=wanted.id%>'><%= wanted.headline %></a></li>
   <%end%>
 <%end%>

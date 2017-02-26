@@ -21,18 +21,18 @@ class ApartmentsController < ApplicationController
   end
 
   get '/apartments/:id' do
-      @apartment = Apartment.find_by(:id => params[:id])
-      @user = User.find_by(:id => @apartment.user_id)
-      if logged_in
-        @viewer = logged_in_user
-      else
-        @viewer = User.new
-      end
-      erb :'/apartments/show'
+    apartment_id
+    @user = User.find_by(:id => @apartment.user_id)
+    if logged_in
+      @viewer = logged_in_user
+    else
+      @viewer = User.new
+    end
+    erb :'/apartments/show'
   end
 
   get '/apartments/:id/edit' do
-    @apartment = Apartment.find_by(:id => params[:id])
+    apartment_id
     @user = User.find_by(:id => @apartment.user_id)
     if author?
       erb :'/apartments/edit'
@@ -42,14 +42,14 @@ class ApartmentsController < ApplicationController
   end
 
   patch '/apartments/:id' do
-    @apartment = Apartment.find_by(:id => params[:id])
+    apartment_id
     @apartment.update(:content => params[:content], :headline => params[:headline], :price => params[:price])
     @apartment.save
     redirect "/apartments/#{@apartment.id}"
   end
 
   get '/apartments/:id/delete' do
-    @apartment = Apartment.find_by(:id => params[:id])
+    apartment_id
     @user = User.find_by(:id => @apartment.user_id)
     if author?
       @apartment.delete

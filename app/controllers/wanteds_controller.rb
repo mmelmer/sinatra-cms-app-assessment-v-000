@@ -21,7 +21,7 @@ class WantedsController < ApplicationController
   end
 
   get '/wanted/:id' do
-    @wanted = Wanted.find_by(:id => params[:id])
+    wanted_id
     @user = User.find_by(:id => @wanted.user_id)
     if logged_in
       @viewer = logged_in_user
@@ -32,7 +32,7 @@ class WantedsController < ApplicationController
   end
 
   get '/wanted/:id/edit' do
-    @wanted = Wanted.find_by(:id => params[:id])
+    wanted_id
     @user = User.find_by(:id => @wanted.user_id)
     if author?
       erb :'/wanteds/edit'
@@ -42,14 +42,14 @@ class WantedsController < ApplicationController
   end
 
   patch '/wanted/:id' do
-    @wanted = Wanted.find_by(:id => params[:id])
+    wanted_id
     @wanted.update(:content => params[:content], :headline => params[:headline])
     @wanted.save
     redirect "/wanted/#{@wanted.id}"
   end
 
   get '/wanted/:id/delete' do
-    @wanted = Wanted.find_by(:id => params[:id])
+    wanted_id
     @user = User.find_by(:id => @wanted.user_id)
     if author?
       @wanted.delete
