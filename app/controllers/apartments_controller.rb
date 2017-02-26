@@ -37,7 +37,7 @@ class ApartmentsController < ApplicationController
     if author?
       erb :'/apartments/edit'
     else
-      erb :'/apartments/index'
+      redirect "/apartments"
     end
   end
 

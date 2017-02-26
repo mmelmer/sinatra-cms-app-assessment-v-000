@@ -37,7 +37,7 @@ class SalesController < ApplicationController
     if author?
       erb :'/sales/edit'
     else
-      erb :'/sales/index'
+      redirect "/for_sale"
     end
   end
 

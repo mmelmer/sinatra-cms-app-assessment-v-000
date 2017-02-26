@@ -37,7 +37,7 @@ class WantedsController < ApplicationController
     if author?
       erb :'/wanteds/edit'
     else
-      erb :'/wanteds/index'
+      redirect "/wanted"
     end
   end
 
