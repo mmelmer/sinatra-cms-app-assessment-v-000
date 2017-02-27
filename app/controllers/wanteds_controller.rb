@@ -13,11 +13,15 @@ class WantedsController < ApplicationController
   end
 
   post '/wanted' do
-    @user = logged_in_user
-    @wanted = Wanted.create(params["wanted"]) 
-    @wanted.user_id = @user.id
-    @wanted.save
-    redirect '/wanted'
+    if params[:wanted][:headline] == ""
+      redirect '/wanted/new'
+    else
+      @user = logged_in_user
+      @wanted = Wanted.create(params["wanted"]) 
+      @wanted.user_id = @user.id
+      @wanted.save
+      redirect '/wanted'
+    end
   end
 
   get '/wanted/:id' do

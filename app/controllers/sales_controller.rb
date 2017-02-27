@@ -13,11 +13,15 @@ class SalesController < ApplicationController
   end
 
   post '/for_sale' do
-    @user = logged_in_user
-    @sale = Sale.create(params["sale"]) 
-    @sale.user_id = @user.id
-    @sale.save
-    redirect '/for_sale'
+    if params[:sale][:headline] == ""
+      redirect '/for_sale/new'
+    else
+      @user = logged_in_user
+      @sale = Sale.create(params["sale"]) 
+      @sale.user_id = @user.id
+      @sale.save
+      redirect '/for_sale'
+    end
   end
 
   get '/for_sale/:id' do

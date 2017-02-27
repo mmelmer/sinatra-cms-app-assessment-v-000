@@ -4,19 +4,23 @@ class ApartmentsController < ApplicationController
     erb :'/apartments/index'
   end
 
-  post '/apartments' do
-    @user = logged_in_user
-    @apartment = Apartment.create(params["apartment"]) 
-    @apartment.user_id = @user.id
-    @apartment.save
-    redirect '/apartments'
-  end
-
   get '/apartments/new' do
     if logged_in
       erb :'apartments/create'
     else
       redirect '/login'
+    end
+  end
+
+  post '/apartments' do
+    if params[:apartment][:headline] == ""
+      redirect '/apartments/new'
+    else
+      @user = logged_in_user
+      @apartment = Apartment.create(params["apartment"]) 
+      @apartment.user_id = @user.id
+      @apartment.save
+      redirect '/apartments'
     end
   end
 
