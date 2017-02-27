@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <form action="/for_sale" method="POST">
 
   <h4>Describe your item for sale below...</h4>

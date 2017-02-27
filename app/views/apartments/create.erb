@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <form action="/apartments" method="POST">
 
   <h4>Describe your apartment below...</h4>

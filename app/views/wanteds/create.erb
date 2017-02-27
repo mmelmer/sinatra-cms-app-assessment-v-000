@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <form action="/wanted" method="POST">
 
   <h4>Describe what you're looking for below...</h4>

@@ -14,6 +14,7 @@ class WantedsController < ApplicationController
 
   post '/wanted' do
     if params[:wanted][:headline] == ""
+      flash[:message] = "your ad must have a title."
       redirect '/wanted/new'
     else
       @user = logged_in_user

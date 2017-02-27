@@ -14,6 +14,7 @@ class SalesController < ApplicationController
 
   post '/for_sale' do
     if params[:sale][:headline] == ""
+      flash[:message] = "your ad must have a title."
       redirect '/for_sale/new'
     else
       @user = logged_in_user

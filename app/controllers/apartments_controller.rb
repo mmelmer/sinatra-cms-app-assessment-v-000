@@ -14,6 +14,7 @@ class ApartmentsController < ApplicationController
 
   post '/apartments' do
     if params[:apartment][:headline] == ""
+      flash[:message] = "your ad must have a title."
       redirect '/apartments/new'
     else
       @user = logged_in_user
