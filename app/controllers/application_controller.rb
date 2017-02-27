@@ -53,7 +53,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/'
     else
-      flash[:message] = "incorrect username or password."
+      flash[:message] = "invalid username or password."
       redirect '/login'
     end
   end
@@ -69,6 +69,7 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     if (params[:username] == "") || (params[:email] == "") || (params[:password] == "")
+      flash[:message] = "you must enter a username, email and password."
       redirect '/signup'
     else
       @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
