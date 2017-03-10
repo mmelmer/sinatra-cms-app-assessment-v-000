@@ -26,15 +26,30 @@ class ApplicationController < Sinatra::Base
     end
 
     def wanted_id
-      @wanted = Wanted.find_by(:id => params[:id])
+      if Wanted.find_by(:id => params[:id])
+        @wanted = Wanted.find_by(:id => params[:id])
+        @user = User.find_by(:id => @wanted.user_id)
+      else
+        redirect '/error'
+      end
     end
 
     def sales_id
-      @sale = Sale.find_by(:id => params[:id])
+      if Sale.find_by(:id => params[:id])
+        @sale = Sale.find_by(:id => params[:id])
+        @user = User.find_by(:id => @sale.user_id)
+      else
+        redirect '/error'
+      end
     end
 
     def apartment_id
-      @apartment = Apartment.find_by(:id => params[:id])
+      if Apartment.find_by(:id => params[:id])
+        @apartment = Apartment.find_by(:id => params[:id])
+        @user = User.find_by(:id => @apartment.user_id)
+      else
+        redirect '/error'
+      end
     end
 
   end
@@ -96,6 +111,10 @@ class ApplicationController < Sinatra::Base
 
   get '/create_ad' do
     erb :create
+  end
+
+  get '/error' do
+    erb :error
   end
 
 end

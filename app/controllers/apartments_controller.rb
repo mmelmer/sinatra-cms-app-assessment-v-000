@@ -27,7 +27,6 @@ class ApartmentsController < ApplicationController
 
   get '/apartments/:id' do
     apartment_id
-    @user = User.find_by(:id => @apartment.user_id)
     if logged_in
       @viewer = logged_in_user
     else
@@ -38,7 +37,6 @@ class ApartmentsController < ApplicationController
 
   get '/apartments/:id/edit' do
     apartment_id
-    @user = User.find_by(:id => @apartment.user_id)
     if author?
       erb :'/apartments/edit'
     else
@@ -55,7 +53,6 @@ class ApartmentsController < ApplicationController
 
   get '/apartments/:id/delete' do
     apartment_id
-    @user = User.find_by(:id => @apartment.user_id)
     if author?
       @apartment.delete
       redirect "/apartments"

@@ -27,7 +27,6 @@ class WantedsController < ApplicationController
 
   get '/wanted/:id' do
     wanted_id
-    @user = User.find_by(:id => @wanted.user_id)
     if logged_in
       @viewer = logged_in_user
     else
@@ -38,7 +37,6 @@ class WantedsController < ApplicationController
 
   get '/wanted/:id/edit' do
     wanted_id
-    @user = User.find_by(:id => @wanted.user_id)
     if author?
       erb :'/wanteds/edit'
     else
@@ -55,7 +53,6 @@ class WantedsController < ApplicationController
 
   get '/wanted/:id/delete' do
     wanted_id
-    @user = User.find_by(:id => @wanted.user_id)
     if author?
       @wanted.delete
       redirect "/wanted"

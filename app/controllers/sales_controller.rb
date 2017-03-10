@@ -27,7 +27,6 @@ class SalesController < ApplicationController
 
   get '/for_sale/:id' do
     sales_id
-    @user = User.find_by(:id => @sale.user_id)
     if logged_in
       @viewer = logged_in_user
     else
@@ -38,7 +37,6 @@ class SalesController < ApplicationController
 
   get '/for_sale/:id/edit' do
     sales_id
-    @user = User.find_by(:id => @sale.user_id)
     if author?
       erb :'/sales/edit'
     else
@@ -55,7 +53,6 @@ class SalesController < ApplicationController
 
   get '/for_sale/:id/delete' do
     sales_id
-    @user = User.find_by(:id => @sale.user_id)
     if author?
       @sale.delete
       redirect "/for_sale"
